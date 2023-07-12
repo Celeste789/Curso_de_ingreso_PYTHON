@@ -37,7 +37,7 @@ class App(customtkinter.CTk):
         match(mes):
             case "Febrero":
                mensaje = "Este mes no tiene mas de 29 dias"
-            case "Enero" | "Marzo" | "Abril" | "Mayo" | "Junio" | "Agosto" | "Septiembre" | "Octubre" | "Noviembre" | "Diciembre":
+            case _:
                mensaje = "Este mes tiene 30 dias o mas"
         alert(message="", title = mensaje)
 

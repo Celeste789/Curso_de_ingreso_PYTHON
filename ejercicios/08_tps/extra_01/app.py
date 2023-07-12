@@ -59,7 +59,31 @@ class App(customtkinter.CTk):
 
 
     def btn_agregar_on_click(self):
+        articulo_ingresado = self.txt_nombre_articulo.get()
+        precio_articulo_ingresado = int(self.txt_precio_articulo.get())
+        for letra in articulo_ingresado:
+            if letra < "A" or letra > "Z" or len(articulo_ingresado) == 0:
+                mensaje_articulo = f"El articulo {articulo_ingresado} no es correcto porque no esta en mayusculas"
+            else:
+                mensaje_articulo = f"El articulo {articulo_ingresado} es correcto"
+
+        self.lista_nombre_articulo.append(articulo_ingresado)
+
+        if precio_articulo_ingresado < 0:
+            mensaje_precio = f"El precio {precio_articulo_ingresado} no es correcto porque es < 0"
+        else:
+            mensaje_precio = f"El precio {precio_articulo_ingresado} es correcto"
         
+        self.lista_precio_articulo.append(precio_articulo_ingresado)
+
+        alert(title="", message=f"{mensaje_precio} {mensaje_articulo}")     
+        
+        
+        
+        
+        
+        
+        '''
         nombre_articulo = self.txt_nombre_articulo.get()
         if(len(nombre_articulo) != 0):
             flag_nombre_articulo_ok = True
@@ -84,7 +108,7 @@ class App(customtkinter.CTk):
             self.lista_nombre_articulo.append(nombre_articulo)
             self.lista_precio_articulo.append(int(precio_articulo_texto))
             alert(title="EXITO",message="La carga fue exitosa")
-    
+    '''
 
 
     def btn_mostrar_on_click(self):

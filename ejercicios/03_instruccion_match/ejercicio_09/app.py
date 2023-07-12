@@ -52,37 +52,35 @@ class App(customtkinter.CTk):
         
     
     def btn_informar_on_click(self):
-        precio = 15000
         estacion = self.combobox_estaciones.get()
-        estaciones = ['Verano', 'Otoño', 'Invierno', 'Primavera']
-        destinos = ['Bariloche', 'Mar del plata', 'Cataratas', 'Cordoba']
-        destino = self.combobox_estaciones.get()
-        tasa = 0
-        match(estaciones):
+        destino = self.combobox_destino.get()
+        estadia = 15000
+        match estacion:
             case "Invierno":
-                match(destinos):
+                match destino:
                     case "Bariloche":
-                        tasa = 20
-                    case "Cataratas" | "Cordoba":
-                        tasa = -10
+                        porcentaje = 1.20
                     case "Mar del plata":
-                        tasa = -20
+                        porcentaje = 0.80
+                    case "Cataratas" | "Cordoba":
+                        porcentaje = 0.90
             case "Verano":
-                match(destinos):
+                match destino:
                     case "Bariloche":
-                        tasa = -20
-                        print(tasa)
-                    case "Cataratas" | "Cordoba":
-                        tasa = 10
+                        porcentaje = 0.8
                     case "Mar del plata":
-                        tasa = 20
-            case "Otoño" | "Invierno":
-                if(destinos != "Cordoba"):
-                    tasa = 10
-        porcentaje = precio * tasa / 100
-        precio_final = precio + porcentaje
-        mensaje = "La tasa es del {0} y el precio final es {1}".format(tasa, precio_final)
-        print(mensaje)
+                        porcentaje = 1.20
+                    case "Cataratas" | "Cordoba":
+                        porcentaje = 1.10
+            case "Primavera" | "Otoño":
+                match destino:
+                    case "Bariloche" | "Cataratas" | "Mar del plata":
+                        porcentaje = 1.10
+                    case "Cordoba":
+                        porcentaje = 1
+        estadia *= porcentaje
+        mensaje = f"El destino {destino} en la estacion {estacion} cuesta {estadia}"
+        alert(title="", message= mensaje)
     
 if __name__ == "__main__":
     app = App()

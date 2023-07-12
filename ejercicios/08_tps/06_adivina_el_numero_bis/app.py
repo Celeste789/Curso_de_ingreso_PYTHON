@@ -7,6 +7,9 @@ import random
 
 
 '''
+Nombre: Maria Celeste
+Apellido: Gonzalez Pereira
+
 Adivina el número (v 1.0):
 Al comenzar el juego generamos un número secreto del 1 al 100, en la pantalla del juego dispondremos de un cuadro de texto 
 para ingresar un número y un botón “Verificar”, si el número ingresado es el mismo que el número secreto se dará por terminado
@@ -45,7 +48,49 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        self.numero_intento += 1 
+        #Es lo primero que haces porque cuando apretas el boton y empezas el programa, es tu primer intento
+        numero_ingresado = int(self.txt_numero.get())
+        if numero_ingresado == self.numero_secreto:
+            match self.numero_intento:
+                case 1:
+                    mensaje = "usted es un Psíquico"
+                case 2:
+                    mensaje = "excelente percepción"
+                case 3:
+                    mensaje = "Esto es suerte"
+                case 4 | 5 | 6:
+                    mensaje = "Excelente técnica"
+                case _:
+                    mensaje = "afortunado en el amor!!"
+            titulo = "Ganaste!!"
+        else:
+            titulo = "Lo sentimos, perdiste"
+            if self.numero_secreto < numero_ingresado:
+                mensaje = "Se paso"
+            else:
+                mensaje = "Falta"
+        alert(title = titulo, message = mensaje)
+        
+        '''
+        if self.numero_secreto < numero_ingresado:
+            mensaje = "Se paso"
+        elif self.numero_secreto > numero_ingresado:
+            mensaje = "Falta"
+        else:
+            match self.numero_intento:
+                case 1:
+                    mensaje = "usted es un Psíquico"
+                case 2:
+                    mensaje = "excelente percepción"
+                case 3:
+                    mensaje = "Esto es suerte"
+                case 4 | 5 | 6:
+                    mensaje = "Excelente técnica"
+                case _:
+                    mensaje = "afortunado en el amor!!"
+        alert(title="", message= mensaje)
+        '''            
 
 
 if __name__ == "__main__":
