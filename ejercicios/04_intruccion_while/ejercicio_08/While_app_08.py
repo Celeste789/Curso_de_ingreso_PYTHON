@@ -49,11 +49,10 @@ class App(customtkinter.CTk):
                         producto_negativos *= numero_ingresado_int
             else:
                 flag = False
-        self.txt_suma_acumulada.delete(0, 10000)
-        self.txt_producto.delete(0, 10000)
+        self.txt_suma_acumulada.delete(0, "end")
+        self.txt_producto.delete(0, "end")
         self.txt_suma_acumulada.insert(0, suma_acumulada_positivos)
-        self.txt_suma_acumulada.insert(0, producto_negativos)
-
+        self.txt_producto.insert(0, producto_negativos)
 
 
     

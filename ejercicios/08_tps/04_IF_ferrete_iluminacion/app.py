@@ -43,6 +43,43 @@ class App(customtkinter.CTk):
         precio_unitario = 800
         sub_total = cantidad_elegida * precio_unitario
         descuento = 1
+        match cantidad_elegida:
+            case 5:
+                match marca_elegida:
+                    case "ArgentinaLuz":
+                        descuento = 0.6
+                    case _:
+                        descuento = 0.7
+            case 4:
+                match marca_elegida:
+                    case "ArgentinaLuz" | "FelipeLamparas":
+                        descuento = 0.75
+                    case _:
+                        descuento = 0.8
+            case 3:
+                match marca_elegida:
+                    case "ArgentinaLuz":
+                        descuento = 0.85
+                    case "FelipeLamparas":
+                        descuento = 0.9
+                    case _:
+                        descuento = 0.95
+            case 1 | 2:
+                descuento = 1
+            case _:
+                descuento = 0.5
+        total_con_descuento = sub_total * descuento
+        if total_con_descuento > 4000:
+            descuento_extra = 0.95
+            total_con_descuento *= descuento_extra
+        mensaje = f"El total con descuento es de {total_con_descuento}"
+        alert(title="", message = mensaje)
+
+
+
+
+
+    '''
         if cantidad_elegida >= 6:
             descuento = 0.5
         else:
@@ -65,12 +102,12 @@ class App(customtkinter.CTk):
                     else:
                         descuento = 0.95
         total_con_descuento = sub_total * descuento
-        if total_con_descuento < 4000:
+        if total_con_descuento > 4000:
             descuento_extra = 0.95
             total_con_descuento *= descuento_extra
-        mensaje = "El total con descuento es de {0}"
+        mensaje = f"El total con descuento es de {total_con_descuento}"
         alert(title="", message = mensaje)
-        
+    '''
 
         
         

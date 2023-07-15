@@ -36,7 +36,7 @@ class App(customtkinter.CTk):
         while contador < 5:
             numero_texto = prompt(title="", prompt="Ingrese un numero")
             if numero_texto != None:
-                numero = int(numero_texto)
+                numero = float(numero_texto)
                 suma_total += numero
             contador += 1
         promedio = suma_total / contador

@@ -45,13 +45,11 @@ class App(customtkinter.CTk):
             else:
                 flag = False
         promedio_funcion = suma_acumulada_funcion / iterador
-        print(f"Promedio {promedio_funcion}, suma acumulada {suma_acumulada_funcion}")
-        '''
-        suma_acumulada = self.txt_suma_acumulada.delete(0, "end")
-        promedio = self.txt_promedio.delete(0, "end")
-        suma_acumulada = self.txt_suma_acumulada.insert(0, suma_acumulada_funcion)
-        promedio = self.txt_suma_acumulada.insert(0, promedio_funcion)
-        '''
+        self.txt_suma_acumulada.delete(0, "end")
+        self.txt_promedio.delete(0, "end")
+        self.txt_suma_acumulada.insert(0, suma_acumulada_funcion)
+        self.txt_promedio.insert(0, promedio_funcion)
+
 
         
 
