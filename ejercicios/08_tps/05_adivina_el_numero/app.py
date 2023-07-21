@@ -36,11 +36,22 @@ class App(customtkinter.CTk):
         self.numero_intento = 0
 
 
-    def btn_mostrar_on_click(self):
-        numero_a_adivinar = random.randrange(0, 100)
-         
+    def btn_mostrar_on_click(self):        
+        self.numero_intento += 1
+        print(self.numero_secreto)
+        numero_jugador = int(self.txt_numero.get())
+        if numero_jugador > self.numero_secreto:
+            mensaje = "Se paso"
+        elif numero_jugador < self.numero_secreto:
+            mensaje = "Falta"
+        else:
+            mensaje = f"Ganaste en {self.numero_intento} intentos"
+        alert(title="Juego", message=mensaje)                     
+        
+        
 
 
 if __name__ == "__main__":
-    app = App() 
+    app = App()
+    app.geometry("300x300")
     app.mainloop()

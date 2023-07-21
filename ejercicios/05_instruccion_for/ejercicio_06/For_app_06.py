@@ -22,7 +22,17 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        cantidad_repeticiones_txt = prompt(title="", prompt="Ingrese la cantidad de repeticiones")
+        cantidad_pares_encontrados = 0
+        if cantidad_repeticiones_txt != None:
+            cantidad_repeticiones = int(cantidad_repeticiones_txt)
+            for i in range(1, cantidad_repeticiones):
+                if i % 2 == 0:
+                    alert(title="", message=i)
+                    cantidad_pares_encontrados += 1
+        alert(title="", message=f"cantidad de pares encontrados {cantidad_pares_encontrados}")
+
+
         
     
 if __name__ == "__main__":

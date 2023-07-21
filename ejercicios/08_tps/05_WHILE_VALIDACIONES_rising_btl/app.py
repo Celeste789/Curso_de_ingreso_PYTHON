@@ -50,8 +50,46 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
-        pass
-
+        #El combobox lo tenes que pedir por prompt tambien porque no le podes pedir informacion a las barritas que te vienen
+        flag = True
+        while flag:
+            apellido = prompt(title="Apellido", prompt="Ingrese su apellido")
+            edad_txt = prompt(title="Edad", prompt="Ingrese su edad")
+            estado_civil = self.combobox_tipo.get()
+            legajo_txt = prompt(title="Legajo", prompt="Ingrese su legajo")
+            if apellido == None or edad_txt == None or legajo_txt == None:
+                flag = False
+            else:
+                edad = int(edad_txt)
+                while (edad < 18 or edad > 90) and flag:
+                    edad_txt = prompt(title="Edad", prompt="Ingrese su edad")
+                    if edad_txt != None and flag:
+                        edad = int(edad_txt)
+                    else:
+                        flag = False
+                while legajo_txt == None:
+                    legajo_txt = prompt(title="Legajo", prompt="Ingrese su legajo")
+                    legajo = int(legajo_txt)
+                    if legajo_txt != None:
+                        legajo = int(legajo_txt)
+                        if legajo < 1000 or legajo > 9999:
+                            legajo_txt = None
+                
+                
+                
+                
+                while len(legajo_txt) != 4: # type: ignore
+                    #por que me dice que puede ser None si estoy adentro del else???
+                    legajo_txt = prompt(title="Legajo", prompt="Ingrese su legajo")
+                    if legajo_txt == None:
+                        flag = False
+                self.txt_apellido.delete(0, "end")
+                self.txt_apellido.insert(0, apellido)
+                self.txt_edad.delete(0, "end")
+                self.txt_edad.insert(0, edad_txt)
+                self.txt_legajo.delete(0, "end")
+                self.txt_legajo.insert(0, legajo_txt)
+                
 
 if __name__ == "__main__":
     app = App()

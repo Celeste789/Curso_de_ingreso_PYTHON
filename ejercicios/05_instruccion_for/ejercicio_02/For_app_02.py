@@ -23,7 +23,9 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass    
+        contador = 6
+        for i in range(1,6):
+            alert(title="", message=f"{contador - i}")
        
             
 
