@@ -24,7 +24,8 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        for i in self.lista_datos:
+            alert(title="Elemento", message= i)
         
         
     

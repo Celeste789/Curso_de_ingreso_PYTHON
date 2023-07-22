@@ -51,45 +51,54 @@ class App(customtkinter.CTk):
 
     def btn_validar_on_click(self):
         #El combobox lo tenes que pedir por prompt tambien porque no le podes pedir informacion a las barritas que te vienen
+        
         flag = True
         while flag:
-            apellido = prompt(title="Apellido", prompt="Ingrese su apellido")
-            edad_txt = prompt(title="Edad", prompt="Ingrese su edad")
-            estado_civil = self.combobox_tipo.get()
-            legajo_txt = prompt(title="Legajo", prompt="Ingrese su legajo")
-            if apellido == None or edad_txt == None or legajo_txt == None:
+            apellido = None
+            edad_txt = None
+            estado_civil = None
+            numero_legajo_txt = None
+
+            while apellido == None:
+                apellido = prompt(title="Apellido", prompt="Ingrese su apellido")
+            
+            while edad_txt == None or int(edad_txt) < 18 or int(edad_txt) > 90:
+                edad_txt = prompt(title="Edad", prompt="Ingrese la edad")
+
+            while not estado_civil or (estado_civil != "Soltero" and estado_civil != "Soltera" and estado_civil != "Casado" and estado_civil != "Casada" and estado_civil != "Viudo" and estado_civil != "Viuda" and estado_civil != "Divorciado" and estado_civil != "Divorciada"):
+                estado_civil = prompt(title="Estado civil", prompt="Ingrese su estado civil")
+            
+            match estado_civil:
+                case "Soltera" | "Soltero":
+                    estado_civil_combo  ="Soltero/a"
+                case "Casada" | "Casado":
+                    estado_civil_combo = "Casado/a"
+                case "Divorciada" | "Divorciado":
+                    estado_civil_combo = "Divorciado/a"
+                case _:
+                    estado_civil_combo = "Viudo/a"
+
+            
+            while not numero_legajo_txt or int(numero_legajo_txt) < 1000 or int(numero_legajo_txt) > 9999 or numero_legajo_txt.startswith("0"):
+                numero_legajo_txt = prompt(title="Numero de legajo", prompt="Ingrese numero de legajo")
+
+
+            self.txt_apellido.delete(0, "end")
+            self.txt_apellido.insert(0, apellido)
+
+            self.txt_edad.delete(0, "end")
+            self.txt_edad.insert(0, edad_txt)
+
+            self.combobox_tipo.set(estado_civil_combo)
+
+            self.txt_legajo.delete(0, "end")
+            self.txt_legajo.insert(0, numero_legajo_txt)
+                
+
+            cancelar = question(title="Cancelar", message="Desea cancelar?")
+            if cancelar:
                 flag = False
-            else:
-                edad = int(edad_txt)
-                while (edad < 18 or edad > 90) and flag:
-                    edad_txt = prompt(title="Edad", prompt="Ingrese su edad")
-                    if edad_txt != None and flag:
-                        edad = int(edad_txt)
-                    else:
-                        flag = False
-                while legajo_txt == None:
-                    legajo_txt = prompt(title="Legajo", prompt="Ingrese su legajo")
-                    legajo = int(legajo_txt)
-                    if legajo_txt != None:
-                        legajo = int(legajo_txt)
-                        if legajo < 1000 or legajo > 9999:
-                            legajo_txt = None
-                
-                
-                
-                
-                while len(legajo_txt) != 4: # type: ignore
-                    #por que me dice que puede ser None si estoy adentro del else???
-                    legajo_txt = prompt(title="Legajo", prompt="Ingrese su legajo")
-                    if legajo_txt == None:
-                        flag = False
-                self.txt_apellido.delete(0, "end")
-                self.txt_apellido.insert(0, apellido)
-                self.txt_edad.delete(0, "end")
-                self.txt_edad.insert(0, edad_txt)
-                self.txt_legajo.delete(0, "end")
-                self.txt_legajo.insert(0, legajo_txt)
-                
+
 
 if __name__ == "__main__":
     app = App()

@@ -27,10 +27,16 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass
+        for i in self.lista_datos:
+            alert(title="Dato", message=i)
         
     def btn_cargar_on_click(self):
-        pass
+        for i in range(3):
+            dato_txt = prompt(title="Dato", prompt="Ingrese un numero")
+            if dato_txt != None:
+                dato = int(dato_txt)
+                self.lista_datos.append(dato)
+
     
 if __name__ == "__main__":
     app = App()
